@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import io.jcervelin.ideas.entities.Alternative;
 import io.jcervelin.ideas.entities.Question;
 import io.jcervelin.ideas.entities.QuizEntity;
 import io.jcervelin.ideas.entities.State;
