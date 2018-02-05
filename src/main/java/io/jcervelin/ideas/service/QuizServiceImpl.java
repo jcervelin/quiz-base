@@ -28,7 +28,7 @@ public class QuizServiceImpl implements QuizService{
 	}
 	
 	public QuizEntity update(QuizEntity quiz) {
-		QuizEntity attached = repo.findById(quiz.get_id()).orElseThrow(() -> new UnprocessableEntity("Id not found"));
+		QuizEntity attached = repo.findBy_id(quiz.get_id()).orElseThrow(() -> new UnprocessableEntity("Id not found"));
 		attached.setName(quiz.getName());
 		attached.setQuestions(quiz.getQuestions());
 		attached.setStates(quiz.getStates());
@@ -41,7 +41,7 @@ public class QuizServiceImpl implements QuizService{
 	}
 	
 	public QuizEntity findById(String id) {
-		return repo.findById(new ObjectId(id)).orElseThrow(() -> new UnprocessableEntity("Quiz not found"));
+		return repo.findBy_id(new ObjectId(id)).orElseThrow(() -> new UnprocessableEntity("Quiz not found"));
 	}
 
 	public QuizEntity findByName(String name) {

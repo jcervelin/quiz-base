@@ -12,6 +12,7 @@ import io.jcervelin.ideas.entities.QuizEntity;
 public interface QuizRepository extends CrudRepository<QuizEntity, ObjectId> {
 	
 	Optional<QuizEntity> findByName(String name);
+	Optional<QuizEntity> findBy_id(ObjectId id);
 	
 
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import io.jcervelin.ideas.service.QuizServiceImpl;
 
 @RestController
 @RequestMapping("/admin")
+@CrossOrigin(origins = "http://localhost:3000"/*, maxAge = 3600*/)
 public class QuizController {
 	
 	private QuizServiceImpl service;
@@ -31,7 +33,7 @@ public class QuizController {
 		this.service = service;
 	}
 	
-	@GetMapping("/")
+	@GetMapping
 	public List<Quiz> list () {
 		List<Quiz> listaQuiz = new ArrayList<>();
 		 service.list().forEach(q -> listaQuiz.add(entityToQuiz(q)));
