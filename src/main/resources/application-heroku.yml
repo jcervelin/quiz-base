@@ -4,3 +4,7 @@ spring:
       uri: ${MONGODB_URI}
   application:
     name: quiz-base
+  profiles:
+    active:
+      -
+      heroku
