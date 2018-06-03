@@ -13,6 +13,4 @@ public class UnprocessableEntity extends ExceptionsHttp {
 	public UnprocessableEntity(String message){
 		super(message,HttpStatus.UNPROCESSABLE_ENTITY);
 	}
-	
-	
 }

@@ -1,7 +1,7 @@
 package io.jcervelin.ideas.exception;
 
-import javax.validation.ConstraintViolationException;
-
+import io.jcervelin.ideas.exception.http.ExceptionsHttp;
+import io.jcervelin.ideas.exception.http.UnprocessableEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.VndErrors.VndError;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import io.jcervelin.ideas.exception.http.ExceptionsHttp;
+import javax.validation.ConstraintViolationException;
 
 
 @RestControllerAdvice
@@ -37,6 +37,12 @@ public class Exceptions {
 		return criarMensagem(HttpStatus.BAD_REQUEST.value(), exception);
 	}
 
+	@ExceptionHandler(UnprocessableEntity.class)
+	@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+	public VndError illegalArgumentException(UnprocessableEntity exception) {
+		return criarMensagem(HttpStatus.UNPROCESSABLE_ENTITY.value(), exception);
+	}
+
 	/* Metodo para mostrar mais amigavel alguns erros http */
 	@ExceptionHandler(ExceptionsHttp.class)
 	public ResponseEntity<?> excecoesHttp(ExceptionsHttp exception) {
@@ -47,5 +53,4 @@ public class Exceptions {
 		logger.error(exception.getMessage(), exception);
 		return new VndError(status.toString(), exception.getMessage());
 	}
-
 }
